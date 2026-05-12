@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+/* DESIGN.MD — BMW M marketing tokens (fuente sustituta: Inter 300/700) */
+:root {
+  --canvas: #000000;
+  --surface-soft: #0d0d0d;
+  --surface-card: #1a1a1a;
+  --surface-elevated: #262626;
+  --carbon-gray: #2b2b2b;
+  --hairline: #3c3c3c;
+  --hairline-strong: #262626;
+  --muted: #7e7e7e;
+  --body: #bbbbbb;
+  --body-strong: #e6e6e6;
+  --on-dark: #ffffff;
+  --ink: #ffffff;
+  --m-blue-light: #0066b1;
+  --m-blue-dark: #1c69d4;
+  --m-red: #e22718;
+  --bmw-blue: #1c69d4;
+  --electric-blue: #0653b6;
+  --warning: #f4b400;
+  --success: #0fa336;
+  --danger: #e22718;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-card: var(--surface-card);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-carbon: var(--carbon-gray);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-muted: var(--muted);
+  --color-body: var(--body);
+  --color-body-strong: var(--body-strong);
+  --color-on-dark: var(--on-dark);
+  --color-ink: var(--ink);
+  --color-m-blue-light: var(--m-blue-light);
+  --color-m-blue-dark: var(--m-blue-dark);
+  --color-m-red: var(--m-red);
+  --color-bmw-blue: var(--bmw-blue);
+  --color-electric-blue: var(--electric-blue);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--body);
+  font-weight: 300;
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+/**
+ * Contenedor pantalla completa en móvil: altura dinámica + márgenes seguros (notch / home indicator).
+ */
+.shell-screen {
+  box-sizing: border-box;
+  min-height: 100dvh;
+  min-height: 100svh;
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+}
+
+.shell-screen-top {
+  padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+}
+
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Franja M tricolor — acento de marca, 4px */
+.m-stripe {
+  height: 4px;
+  width: 100%;
+  max-width: 12rem;
+  background: linear-gradient(
+    90deg,
+    var(--m-blue-light) 0%,
+    var(--m-blue-dark) 50%,
+    var(--m-red) 100%
+  );
+}
+
+.m-stripe-wide {
+  max-width: none;
+}
+
+/* Botón primario: rectángulo, mayúsculas, tracking 1.5px */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  width: 100%;
+  padding: 14px 20px;
+  background-color: var(--canvas);
+  color: var(--on-dark);
+  border: 1px solid var(--on-dark);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+@media (min-width: 640px) {
+  .btn-primary {
+    width: auto;
+    padding: 16px 32px;
+    font-size: 14px;
+  }
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--on-dark);
+  color: var(--canvas);
+  border-color: var(--on-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Botón secundario — solo contorno / superficie elevada */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  width: 100%;
+  padding: 14px 20px;
+  background-color: transparent;
+  color: var(--on-dark);
+  border: 1px solid var(--hairline);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+@media (min-width: 640px) {
+  .btn-outline {
+    width: auto;
+    padding: 16px 32px;
+    font-size: 14px;
+  }
+}
+
+.btn-outline:hover:not(:disabled) {
+  border-color: var(--on-dark);
+}
+
+/* Tarjeta tipo feature-photo-card / spec-cell */
+.card-surface {
+  background-color: var(--surface-card);
+  border: 1px solid var(--hairline);
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .card-surface {
+    padding: 24px;
+  }
+}
+
+.card-spec {
+  background-color: var(--surface-soft);
+  border: 1px solid var(--hairline);
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .card-spec {
+    padding: 24px;
+  }
+}
+
+/* Input texto oscuro */
+.input-dark {
+  height: 48px;
+  padding: 12px 16px;
+  background-color: var(--surface-card);
+  color: var(--on-dark);
+  border: 1px solid var(--hairline);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.input-dark::placeholder {
+  color: var(--muted);
+}
+
+.input-dark:focus {
+  border-color: var(--on-dark);
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out;
+}
+
+.emoji-large {
+  font-size: clamp(2.75rem, 11vw, 4rem);
+  line-height: 1.15;
+}
+
+@media (min-width: 768px) {
+  .emoji-large {
+    font-size: clamp(4rem, 7vw, 6rem);
+    line-height: 1.2;
+  }
+}

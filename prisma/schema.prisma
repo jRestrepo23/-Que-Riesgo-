@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Catálogo de riesgos empresariales
+model Risk {
+  id    String @id
+  name  String @db.VarChar(255)
+  level String @db.VarChar(50) // "Alto", "Moderado", "Bajo"
+  emojis Json // string[] en JSON
+
+  @@map("rq_risks")
+}
+
+// Sala de juego
+model Room {
+  id             String   @id @default(uuid())
+  code           String   @unique @db.VarChar(4) // Código de 4 caracteres para unirse
+  phase          String   @db.VarChar(50) // waiting, round-intro, round-active, round-results, finished
+  currentRound   Int      @default(0)
+  hostSocketId   String?  @db.VarChar(100) // Socket ID del host
+  currentRiskId  String?  @db.VarChar(50) // ID del riesgo actual
+  roundStartTime BigInt? // timestamp cuando inicia el timer
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relaciones
+  players        Player[]
+  roundResults   RoundResult[]
+
+  @@map("rq_rooms")
+}
+
+// Jugador en una sala
+model Player {
+  id       String   @id // socket.id
+  roomId   String
+  name     String   @db.VarChar(20)
+  score    Int      @default(0)
+  joinedAt DateTime @default(now())
+
+  // Relaciones
+  room     Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  answers  Answer[]
+
+  @@unique([roomId, id]) // Un socket por sala
+  @@map("rq_players")
+}
+
+// Respuesta de un jugador en una ronda
+model Answer {
+  id          Int      @id @default(autoincrement())
+  playerId    String   @db.VarChar(100)
+  roomId      String
+  roundIndex  Int      // 0-5
+  riskId      String   @db.VarChar(50) // ID del riesgo que respondió
+  correct     Boolean  // ¿fue correcta la respuesta?
+  points      Int      // Puntos otorgados (base + bonus velocidad)
+  answerOrder Int      // Posición en el orden de respuesta (para calcular bonus)
+  answeredAt  DateTime @default(now())
+
+  // Relaciones
+  player      Player   @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@map("rq_answers")
+}
+
+// Resultados agregados de una ronda
+model RoundResult {
+  id            Int      @id @default(autoincrement())
+  roomId        String
+  roundIndex    Int
+  correctRiskId String   @db.VarChar(50)
+  totalPlayers  Int
+  correctCount  Int
+  createdAt     DateTime @default(now())
+
+  // Relaciones
+  room          Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@map("rq_round_results")
+}
