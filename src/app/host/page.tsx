@@ -42,7 +42,7 @@ export default function HostPage() {
 
   useEffect(() => {
     if (roomCode) {
-      const url = `${window.location.origin}/player`
+      const url = `${window.location.origin}/player?code=${roomCode}`
       QRCode.toDataURL(url, {
         width: 256,
         margin: 2,

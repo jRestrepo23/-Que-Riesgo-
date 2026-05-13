@@ -35,6 +35,12 @@ export default function PlayerPage() {
   const [now, setNow] = useState(() => 0)
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const code = params.get("code")
+    if (code) setCodeInput(code.toUpperCase().slice(0, 4))
+  }, [])
+
+  useEffect(() => {
     if (phase !== "round-active") return
     const tick = () => setNow(Date.now())
     const startId = setTimeout(tick, 0)
