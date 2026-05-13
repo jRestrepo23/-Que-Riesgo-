@@ -356,6 +356,10 @@ class GameManager {
       where: { roomId },
       orderBy: { score: "desc" },
       include: {
+        answers: {
+          select: { correct: true, points: true, roundIndex: true },
+          orderBy: { roundIndex: "asc" },
+        },
         _count: { select: { answers: true } },
       },
     })
