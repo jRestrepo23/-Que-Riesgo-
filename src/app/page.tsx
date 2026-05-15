@@ -11,7 +11,7 @@ export default function Home() {
             Gestión de riesgos
           </p>
           <h1 className="text-[clamp(1.75rem,8vw,3.5rem)] sm:text-5xl md:text-6xl lg:text-[56px] font-bold text-on-dark uppercase tracking-[-0.5px] leading-[1.05] mb-5 sm:mb-6 px-2 break-words">
-            ¡Qué Riesgo!
+            ¿Qué riesgo es?
           </h1>
           <div className="flex justify-center mb-5 sm:mb-6">
             <div className="m-stripe" aria-hidden />

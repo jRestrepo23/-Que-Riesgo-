@@ -21,7 +21,7 @@ const RISKS = [
     id: "financiero",
     name: "Riesgo de sostenibilidad financiera",
     level: "Moderado",
-    emojis: ["🕳️", "💸", "🏦", "🚫", "🧧"],
+    emojis: ["🕳️", "💸", "🏦", "🚫", "💲"],
   },
   {
     id: "normativo",
@@ -37,7 +37,7 @@ const RISKS = [
   },
 ]
 
-const ROUND_DURATION_MS = 16_000
+const ROUND_DURATION_MS = 25_000
 const ROUND_DURATION_SECONDS = ROUND_DURATION_MS / 1000
 const BASE_POINTS = 100
 const MAX_SPEED_BONUS = 200

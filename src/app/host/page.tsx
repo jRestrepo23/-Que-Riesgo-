@@ -73,7 +73,7 @@ export default function HostPage() {
         <div className="text-center animate-slide-up max-w-lg w-full px-2">
           <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] text-on-dark mb-4">Líder</p>
           <h1 className="text-[clamp(1.5rem,6vw,2.25rem)] sm:text-3xl md:text-4xl font-bold text-on-dark uppercase tracking-[-0.5px] mb-2">
-            ¡Qué Riesgo!
+            ¿Qué riesgo es?
           </h1>
           <div className="flex justify-center mb-8 sm:mb-10">
             <div className="m-stripe" aria-hidden />
@@ -92,7 +92,7 @@ export default function HostPage() {
         <div className="max-w-4xl mx-auto w-full">
           <div className="text-center mb-8 sm:mb-10 md:mb-14 animate-slide-up px-1">
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-on-dark uppercase tracking-[-0.5px] mb-2">
-              ¡Qué Riesgo!
+              ¿Qué riesgo es?
             </h1>
             <div className="flex justify-center mb-5 sm:mb-6 px-2">
               <div className="m-stripe m-stripe-wide max-w-md w-full" aria-hidden />

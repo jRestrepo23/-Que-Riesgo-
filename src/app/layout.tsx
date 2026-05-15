@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "¡Qué Riesgo! - Juego de Riesgos",
+  title: "¿Qué riesgo es? - Juego de Riesgos",
   description: "Mini juego multijugador: adivina el riesgo a partir de los emojis.",
 }
 
