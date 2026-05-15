@@ -25,7 +25,7 @@ const RISKS = [
     id: "financiero",
     name: "Riesgo de sostenibilidad financiera",
     level: "Moderado",
-    emojis: ["🕳️", "💸", "🏦", "🚫", "🧧"],
+    emojis: ["🕳️", "💸", "🏦", "🚫", "💲"],
   },
   {
     id: "normativo",

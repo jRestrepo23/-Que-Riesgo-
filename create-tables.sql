@@ -58,6 +58,6 @@ INSERT INTO rq_risks (id, name, level, emojis) VALUES
 ('competitividad', 'Posible pérdida de competitividad comercial', 'Alto', '["🏃‍♂️","💨","📉","🥈","🏢"]'),
 ('seguridad', 'Seguridad de los colaboradores', 'Moderado', '["👷‍♂️","⚠️","🦺","🩹","🆘"]'),
 ('gestion', 'Posible falta de Gestión en el modelo de negocio', 'Moderado', '["🌪️","📂","🏢","🤯","🧭"]'),
-('financiero', 'Riesgo de sostenibilidad financiera', 'Moderado', '["🕳️","💸","🏦","🚫","🧧"]'),
+('financiero', 'Riesgo de sostenibilidad financiera', 'Moderado', '["🕳️","💸","🏦","🚫","💲"]'),
 ('normativo', 'Incumplimiento normativo o contractual', 'Moderado', '["⚖️","📜","✍️","🚫","👮"]'),
 ('confianza', 'Posible pérdida de confianza institucional', 'Bajo', '["🤝","💔","🤐","🏛️","📉"]');
