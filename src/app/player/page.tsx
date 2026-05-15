@@ -78,7 +78,7 @@ export default function PlayerPage() {
           <div className="text-center mb-6 sm:mb-8">
             <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] text-on-dark mb-3">Jugador</p>
             <h1 className="text-[clamp(1.25rem,5.5vw,1.875rem)] sm:text-2xl md:text-3xl font-bold text-on-dark uppercase tracking-[-0.5px] mb-4">
-              RiskQuiz
+              ¿Qué riesgo es?
             </h1>
             <div className="flex justify-center mb-4">
               <div className="m-stripe" aria-hidden />
