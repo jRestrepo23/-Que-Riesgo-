@@ -144,17 +144,15 @@ function initSocketIO(server) {
             return
           }
 
-          // Si el nombre ya existe en la sala, verificar si ese socket sigue activo.
-          // Si está desconectado (jugador fantasma), eliminarlo y reutilizar el nombre.
-          // Si sigue conectado, asignar un nombre único: "Nombre 2", "Nombre 3", etc.
+          // Limpiar todos los jugadores fantasma (socket desconectado) antes de unirse,
+          // sin importar el nombre. Así alguien que se fue como "Juan David" y vuelve
+          // como "JD" no deja un registro huérfano.
           const existingPlayers = await gameManager.getPlayers(room.id)
+          const connectedSockets = await io.in(room.id).fetchSockets()
+          const connectedIds = new Set(connectedSockets.map((s) => s.id))
           for (const p of existingPlayers) {
-            if (p.name === playerName) {
-              const sockets = await io.in(room.id).fetchSockets()
-              const stillConnected = sockets.some((s) => s.id === p.id)
-              if (!stillConnected) {
-                await gameManager.removePlayer(room.id, p.id)
-              }
+            if (!connectedIds.has(p.id)) {
+              await gameManager.removePlayer(room.id, p.id)
             }
           }
           const activePlayers = await gameManager.getPlayers(room.id)
