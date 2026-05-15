@@ -3,7 +3,7 @@ import { db } from "./db"
 const ROOM_CODE_LENGTH = 4
 const BASE_POINTS = 100
 const MAX_SPEED_BONUS = 200
-const ROUND_DURATION_MS = 16_000
+const ROUND_DURATION_MS = 25_000
 
 // Estado efímero: timers activos, opciones barajadas, orden de respuestas
 const activeTimers = new Map<string, NodeJS.Timeout>()

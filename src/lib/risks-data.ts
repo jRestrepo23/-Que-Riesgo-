@@ -28,7 +28,7 @@ export const RISKS: Risk[] = [
     id: "financiero",
     name: "Riesgo de sostenibilidad financiera",
     level: "Moderado",
-    emojis: ["🕳️", "💸", "🏦", "🚫", "🧧"],
+    emojis: ["🕳️", "💸", "🏦", "🚫", "💲"],
   },
   {
     id: "normativo",
@@ -44,7 +44,7 @@ export const RISKS: Risk[] = [
   },
 ]
 
-export const ROUND_DURATION_MS = 16_000
+export const ROUND_DURATION_MS = 25_000
 export const ROUND_DURATION_SECONDS = ROUND_DURATION_MS / 1000
 export const BASE_POINTS = 100
 export const MAX_SPEED_BONUS = 200
