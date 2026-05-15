@@ -144,7 +144,28 @@ function initSocketIO(server) {
             return
           }
 
-          const added = await gameManager.addPlayer(room.id, socket.id, playerName)
+          // Si el nombre ya existe en la sala, verificar si ese socket sigue activo.
+          // Si está desconectado (jugador fantasma), eliminarlo y reutilizar el nombre.
+          // Si sigue conectado, asignar un nombre único: "Nombre 2", "Nombre 3", etc.
+          const existingPlayers = await gameManager.getPlayers(room.id)
+          for (const p of existingPlayers) {
+            if (p.name === playerName) {
+              const sockets = await io.in(room.id).fetchSockets()
+              const stillConnected = sockets.some((s) => s.id === p.id)
+              if (!stillConnected) {
+                await gameManager.removePlayer(room.id, p.id)
+              }
+            }
+          }
+          const activePlayers = await gameManager.getPlayers(room.id)
+          const takenNames = new Set(activePlayers.map((p) => p.name))
+          let finalName = playerName
+          let suffix = 2
+          while (takenNames.has(finalName)) {
+            finalName = `${playerName} ${suffix++}`
+          }
+
+          const added = await gameManager.addPlayer(room.id, socket.id, finalName)
           if (!added) {
             socket.emit("join-error", { message: "No se pudo unir a la sala" })
             return
@@ -152,11 +173,11 @@ function initSocketIO(server) {
 
           socket.join(room.id)
           socket.data.roomId = room.id
-          socket.data.playerName = playerName
+          socket.data.playerName = finalName
           socket.data.isHost = false
           playerIdBySocket.set(socket.id, socket.id)
 
-          socket.emit("joined-room", { roomId: room.id, playerName })
+          socket.emit("joined-room", { roomId: room.id, playerName: finalName })
 
           const players = await gameManager.getPlayers(room.id)
           io.to(room.id).emit("players-updated", { players })
